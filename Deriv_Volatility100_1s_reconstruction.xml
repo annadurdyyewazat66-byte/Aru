@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml xmlns="https://developers.google.com/blockly/xml" collection="false">
+  <block type="trade" id="trade_root" x="20" y="20">
+    <field name="MARKET_LIST">volidx</field>
+    <field name="SUBMARKET_LIST">random_index</field>
+    <field name="SYMBOL_LIST">1HZ100V</field>
+    <field name="TRADETYPECAT_LIST">digits</field>
+    <field name="TRADETYPE_LIST">matchesdiffers</field>
+    <field name="TYPE_LIST">DIGITMATCH</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
+    <field name="TIME_MACHINE_ENABLED">FALSE</field>
+    <field name="RESTARTONERROR">FALSE</field>
+    <statement name="INITIALIZATION">
+      <block type="variables_set" id="stake_set">
+        <field name="VAR" id="stake_var">stake</field>
+        <value name="VALUE">
+          <shadow type="math_number" id="stake_value">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="variables_set" id="martingale_set">
+            <field name="VAR" id="martingale_var">martingale</field>
+            <value name="VALUE">
+              <shadow type="math_number" id="martingale_value">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="variables_set" id="next_trade_set">
+                <field name="VAR" id="next_trade_var">next_trade</field>
+                <value name="VALUE">
+                  <shadow type="text" id="next_trade_value">
+                    <field name="TEXT">Matchesproexecution</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="SUBMARKET">
+      <block type="trade_definition" id="trade_definition">
+        <field name="TRADETYPECAT_LIST">digits</field>
+        <field name="TRADETYPE_LIST">matchesdiffers</field>
+        <field name="TYPE_LIST">DIGITMATCH</field>
+        <value name="AMOUNT">
+          <shadow type="math_number" id="amount_value">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+        <value name="DURATION">
+          <shadow type="math_number" id="duration_value">
+            <field name="NUM">2</field>
+          </shadow>
+        </value>
+        <field name="DURATIONTYPE_LIST">t</field>
+        <value name="PREDICTION">
+          <shadow type="math_number" id="prediction_value">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <statement name="PURCHASE_CONDITION">
+          <block type="purchase" id="purchase">
+            <field name="PURCHASE_LIST">DIGITMATCH</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <statement name="AFTER_PURCHASE">
+      <block type="trade_again" id="trade_again"/>
+    </statement>
+  </block>
+</xml>
